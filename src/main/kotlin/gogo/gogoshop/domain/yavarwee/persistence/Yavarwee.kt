@@ -1,4 +1,4 @@
-package gogo.gogoshop.domain.yavarwee
+package gogo.gogoshop.domain.yavarwee.persistence
 
 import jakarta.persistence.*
 
