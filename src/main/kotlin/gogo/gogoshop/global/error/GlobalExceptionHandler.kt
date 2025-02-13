@@ -12,8 +12,8 @@ import org.springframework.web.servlet.NoHandlerFoundException
 @RestControllerAdvice
 class GlobalExceptionHandler {
 
-    @ExceptionHandler(StageException::class)
-    fun userExceptionHandler(e: StageException): ResponseEntity<ErrorResponse> =
+    @ExceptionHandler(ShopException::class)
+    fun userExceptionHandler(e: ShopException): ResponseEntity<ErrorResponse> =
         ResponseEntity(ErrorResponse.of(e), HttpStatus.valueOf(e.status))
 
     @ExceptionHandler(BindException::class)

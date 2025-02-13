@@ -9,7 +9,7 @@ data class ErrorResponse(
     val status: Int
 )  {
     companion object {
-        fun of(e: StageException) =
+        fun of(e: ShopException) =
             ErrorResponse(
                 message = e.message,
                 status = e.status
