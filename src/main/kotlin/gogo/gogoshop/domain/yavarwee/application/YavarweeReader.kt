@@ -9,7 +9,7 @@ class YavarweeReader(
     private val yavarweeRepository: YavarweeRepository
 ) {
 
-    fun read(shopId: Long): Yavarwee =
+    fun read(shopId: Long): Yavarwee? =
         yavarweeRepository.findByShopId(shopId)
 
 }

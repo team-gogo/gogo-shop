@@ -13,9 +13,9 @@ class ShopMapper {
 
     fun map(
         shopId: Long,
-        coinTossDto: CoinTossResDto,
-        yavarweeDto: YavarweeResDto,
-        plinkoDto: PlinkoResDto
+        coinTossDto: CoinTossResDto?,
+        yavarweeDto: YavarweeResDto?,
+        plinkoDto: PlinkoResDto?
     ) =
         ShopTicketStatusResDto(
             shopId = shopId,

@@ -6,7 +6,7 @@ import gogo.gogoshop.domain.yavarwee.application.dto.YavarweeResDto
 
 data class ShopTicketStatusResDto(
     val shopId: Long,
-    val coinToss: CoinTossResDto,
-    val yavarwee: YavarweeResDto,
-    val plinko: PlinkoResDto
+    val coinToss: CoinTossResDto?,
+    val yavarwee: YavarweeResDto?,
+    val plinko: PlinkoResDto?
 )

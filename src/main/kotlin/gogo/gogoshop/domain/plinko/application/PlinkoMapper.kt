@@ -7,11 +7,13 @@ import org.springframework.stereotype.Component
 @Component
 class PlinkoMapper {
 
-    fun map(plinko: Plinko) =
-        PlinkoResDto(
-            plinkoId = plinko.plinkoId,
-            ticketPrice = plinko.ticketPrice,
-            ticketQuantity = plinko.ticketQauntity
-        )
+    fun map(plinko: Plinko?) =
+        plinko?.let {
+            PlinkoResDto(
+                plinkoId = it.plinkoId,
+                ticketPrice = it.ticketPrice,
+                ticketQuantity = it.ticketQauntity
+            )
+        }
 
 }

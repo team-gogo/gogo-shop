@@ -9,7 +9,7 @@ class PlinkoReader(
     private val plinkoRepository: PlinkoRepository
 ) {
 
-    fun read(shopId: Long): Plinko =
+    fun read(shopId: Long): Plinko? =
         plinkoRepository.findByShopId(shopId)
 
 }

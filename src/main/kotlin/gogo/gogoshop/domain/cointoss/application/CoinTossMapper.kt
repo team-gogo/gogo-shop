@@ -7,11 +7,13 @@ import org.springframework.stereotype.Component
 @Component
 class CoinTossMapper {
 
-    fun map(coinToss: CoinToss) =
-        CoinTossResDto(
-            coinTossId = coinToss.coinTossId,
-            ticketPrice = coinToss.ticketPrice,
-            ticketQuantity = coinToss.ticketQauntity
-        )
+    fun map(coinToss: CoinToss?) =
+        coinToss?.let {
+            CoinTossResDto(
+                coinTossId = it.coinTossId,
+                ticketPrice = it.ticketPrice,
+                ticketQuantity = it.ticketQauntity
+            )
+        }
 
 }

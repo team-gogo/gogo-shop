@@ -9,7 +9,7 @@ class CoinTossReader(
     private val coinTossRepository: CoinTossRepository
 ) {
 
-    fun read(shopId: Long): CoinToss =
+    fun read(shopId: Long): CoinToss? =
         coinTossRepository.findByShopId(shopId)
 
 }
