@@ -12,6 +12,6 @@ class ShopReader(
 
     fun read(stageId: Long) =
         shopRepository.findByStageId(stageId)
-            ?: throw ShopException("Shop Not Found", HttpStatus.NOT_FOUND.value())
+            ?: throw ShopException("Shop Not Found, stageId = $stageId", HttpStatus.NOT_FOUND.value())
 
 }
