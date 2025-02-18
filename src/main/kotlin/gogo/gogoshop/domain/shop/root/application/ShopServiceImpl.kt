@@ -1,11 +1,8 @@
 package gogo.gogoshop.domain.shop.root.application
 
-import gogo.gogoshop.domain.cointoss.application.CoinTossMapper
 import gogo.gogoshop.domain.cointoss.application.CoinTossReader
-import gogo.gogoshop.domain.plinko.application.PlinkoMapper
 import gogo.gogoshop.domain.plinko.application.PlinkoReader
 import gogo.gogoshop.domain.shop.root.application.dto.ShopTicketStatusResDto
-import gogo.gogoshop.domain.yavarwee.application.YavarweeMapper
 import gogo.gogoshop.domain.yavarwee.application.YavarweeReader
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -16,9 +13,6 @@ class ShopServiceImpl(
     private val coinTossReader: CoinTossReader,
     private val plinkoReader: PlinkoReader,
     private val yavarweeReader: YavarweeReader,
-    private val plinkoMapper: PlinkoMapper,
-    private val yavarweeMapper: YavarweeMapper,
-    private val coinTossMapper: CoinTossMapper,
     private val shopMapper: ShopMapper
 ): ShopService {
 
@@ -28,9 +22,9 @@ class ShopServiceImpl(
         val coinToss = coinTossReader.read(shop.shopId)
         val plinko = plinkoReader.read(shop.shopId)
         val yavarwee = yavarweeReader.read(shop.shopId)
-        val coinTossResDto = coinTossMapper.map(coinToss)
-        val plinkoResDto = plinkoMapper.map(plinko)
-        val yavarweeResDto = yavarweeMapper.map(yavarwee)
+        val coinTossResDto = shopMapper.map(coinToss)
+        val plinkoResDto = shopMapper.map(plinko)
+        val yavarweeResDto = shopMapper.map(yavarwee)
         return shopMapper.map(shop.shopId, coinTossResDto, yavarweeResDto, plinkoResDto)
     }
 
