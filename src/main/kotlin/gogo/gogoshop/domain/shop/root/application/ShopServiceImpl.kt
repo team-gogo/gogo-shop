@@ -22,9 +22,9 @@ class ShopServiceImpl(
         val coinToss = coinTossReader.read(shop.shopId)
         val plinko = plinkoReader.read(shop.shopId)
         val yavarwee = yavarweeReader.read(shop.shopId)
-        val coinTossResDto = shopMapper.map(coinToss)
-        val plinkoResDto = shopMapper.map(plinko)
-        val yavarweeResDto = shopMapper.map(yavarwee)
+        val coinTossResDto = shopMapper.mapCoinToss(coinToss)
+        val plinkoResDto = shopMapper.mapPlinko(plinko)
+        val yavarweeResDto = shopMapper.mapYavarwee(yavarwee)
         return shopMapper.map(shop.shopId, coinTossResDto, yavarweeResDto, plinkoResDto)
     }
 
