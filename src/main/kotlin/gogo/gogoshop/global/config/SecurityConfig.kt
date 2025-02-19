@@ -1,9 +1,11 @@
 package gogo.gogoshop.global.config
 
 
+import gogo.gogoshop.domain.shop.root.application.ShopMapper
 import gogo.gogoshop.global.filter.AuthenticationFilter
 import gogo.gogoshop.global.handler.CustomAccessDeniedHandler
 import gogo.gogoshop.global.handler.CustomAuthenticationEntryPointHandler
+import gogo.gogoshop.global.internal.user.stub.Authority
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
@@ -23,7 +25,7 @@ class SecurityConfig(
 ) {
 
     @Bean
-    fun filterChain(http: HttpSecurity): SecurityFilterChain {
+    fun filterChain(http: HttpSecurity, shopMapper: ShopMapper): SecurityFilterChain {
         http.formLogin { it.disable() }
             .httpBasic { it.disable() }
 
@@ -43,6 +45,10 @@ class SecurityConfig(
 
         http.authorizeHttpRequests { httpRequests ->
             httpRequests.requestMatchers(HttpMethod.GET, "/shop/health").permitAll()
+
+            // shop
+            httpRequests.requestMatchers(HttpMethod.GET, "/shop/{stage_id}").hasAnyRole(Authority.USER.name)
+
             httpRequests.anyRequest().denyAll()
         }
 
