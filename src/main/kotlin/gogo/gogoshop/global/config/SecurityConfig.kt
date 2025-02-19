@@ -48,6 +48,7 @@ class SecurityConfig(
 
             // shop
             httpRequests.requestMatchers(HttpMethod.GET, "/shop/{stage_id}").hasAnyRole(Authority.USER.name)
+            httpRequests.requestMatchers(HttpMethod.GET, "/shop/receipt/{shop_id}").hasAnyRole(Authority.USER.name)
 
             httpRequests.anyRequest().denyAll()
         }
