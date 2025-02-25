@@ -16,7 +16,9 @@ class ShopReceiptServiceImpl(
     override fun getShopReceipt(shopId: Long): ReceiptResDto {
         val student = userUtil.getCurrentStudent()
         val shopReceiptList = shopReceiptReader.read(shopId, student.studentId)
+        val receiptCount = shopReceiptReader.readReceiptCount(shopId, student.studentId)
         val shopTicketReceiptDtoList = shopReceiptMapper.map(shopReceiptList)
-        return ReceiptResDto(shopTicketReceiptDtoList)
+        val receiptResDto = shopReceiptMapper.mapReceiptResDto(shopTicketReceiptDtoList, receiptCount)
+        return receiptResDto
     }
 }
