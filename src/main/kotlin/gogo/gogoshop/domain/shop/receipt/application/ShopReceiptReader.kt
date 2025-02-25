@@ -11,4 +11,8 @@ class ShopReceiptReader(
     fun read(shopId: Long, studentId: Long) =
         shopReceiptRepository.findByShopIdAndStudentId(shopId, studentId)
 
+    fun readReceiptCount(shopId: Long, studentId: Long) =
+        shopReceiptRepository.countByShopIdAndStudentId(shopId, studentId)
+
+
 }

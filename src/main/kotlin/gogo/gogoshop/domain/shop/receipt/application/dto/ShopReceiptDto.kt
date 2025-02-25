@@ -4,6 +4,7 @@ import gogo.gogoshop.domain.shop.receipt.persistence.TicketType
 import java.time.LocalDateTime
 
 data class ReceiptResDto(
+    val count: Int,
     val receipt: List<ShopTicketReceiptDto>
 )
 
