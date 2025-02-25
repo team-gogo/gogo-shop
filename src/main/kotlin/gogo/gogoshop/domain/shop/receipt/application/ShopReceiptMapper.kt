@@ -1,5 +1,6 @@
 package gogo.gogoshop.domain.shop.receipt.application
 
+import gogo.gogoshop.domain.shop.receipt.application.dto.ReceiptResDto
 import gogo.gogoshop.domain.shop.receipt.application.dto.ShopTicketReceiptDto
 import gogo.gogoshop.domain.shop.receipt.persistence.ShopReceipt
 import org.springframework.stereotype.Component
@@ -16,6 +17,12 @@ class ShopReceiptMapper {
                 purchaseDate = receipt.purchaseDate
             )
         }
+
+    fun mapReceiptResDto(shopTicketReceiptDto: List<ShopTicketReceiptDto>, receiptCount: Int) =
+        ReceiptResDto(
+            count = receiptCount,
+            receipt = shopTicketReceiptDto
+        )
 
 
 
