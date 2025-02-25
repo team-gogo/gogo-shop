@@ -1,7 +1,7 @@
 package gogo.gogoshop.domain.shop.receipt.persistence
 
 import jakarta.persistence.*
-import java.time.LocalDate
+import java.time.LocalDateTime
 
 @Entity
 @Table(name = "tbl_shop_receipt")
@@ -28,7 +28,7 @@ class ShopReceipt(
     val ticketType: TicketType,
 
     @Column(name = "purchase_date", nullable = false)
-    val purchaseDate: LocalDate
+    val purchaseDate: LocalDateTime
 ) {
 }
 
