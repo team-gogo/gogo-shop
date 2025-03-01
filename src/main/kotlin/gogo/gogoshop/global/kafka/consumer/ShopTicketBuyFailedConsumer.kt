@@ -6,6 +6,7 @@ import gogo.gogoshop.global.kafka.properties.KafkaTopics.SHOP_TICKET_BUY_FAILED
 import gogo.gogoshop.global.saga.ShopTicketBuyFailedSaga
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.slf4j.LoggerFactory
+import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.kafka.listener.AcknowledgingMessageListener
 import org.springframework.kafka.support.Acknowledgment
 import org.springframework.stereotype.Service
@@ -19,6 +20,11 @@ class ShopTicketBuyFailedConsumer(
     private val log = LoggerFactory.getLogger(this::class.java.simpleName)
 
 
+    @KafkaListener(
+        topics = [SHOP_TICKET_BUY_FAILED],
+        groupId = "gogo",
+        containerFactory = "shopTicketBuyFailedEventListenerContainerFactory"
+    )
     override fun onMessage(data: ConsumerRecord<String, String>, acknowledgment: Acknowledgment?) {
         val (key, event) = data.key() to objectMapper.readValue(data.value(), ShopTicketBuyFailedEvent::class.java)
         log.info("${SHOP_TICKET_BUY_FAILED}_topic, key: $key, event: $event")
