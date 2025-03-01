@@ -19,4 +19,9 @@ class Plinko(
     @Column(name = "ticket_qauntity")
     var ticketQauntity: Int
 ) {
+
+    fun minusQuantity(minusTicketQauntity: Int) {
+        ticketQauntity -= minusTicketQauntity
+    }
+
 }
