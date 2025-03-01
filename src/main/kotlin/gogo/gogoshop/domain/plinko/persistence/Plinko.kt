@@ -17,11 +17,15 @@ class Plinko(
     val ticketPrice: Int,
 
     @Column(name = "ticket_qauntity")
-    var ticketQauntity: Int
+    var ticketQuantity: Int
 ) {
 
-    fun minusQuantity(minusTicketQauntity: Int) {
-        ticketQauntity -= minusTicketQauntity
+    fun minusQuantity(minusTicketQuantity: Int) {
+        ticketQuantity -= minusTicketQuantity
+    }
+
+    fun plusQuantity(plusQuantity: Int) {
+        ticketQuantity += plusQuantity
     }
 
 }

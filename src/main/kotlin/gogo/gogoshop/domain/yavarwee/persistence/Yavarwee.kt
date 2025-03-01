@@ -25,4 +25,8 @@ class Yavarwee(
         ticketQuantity -= minusTicketQuantity
     }
 
+    fun plusQuantity(plusQuantity: Int) {
+        ticketQuantity += plusQuantity
+    }
+
 }
