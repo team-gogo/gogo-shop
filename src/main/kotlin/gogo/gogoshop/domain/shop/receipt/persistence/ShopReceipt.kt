@@ -33,5 +33,5 @@ class ShopReceipt(
 }
 
 enum class TicketType {
-    COINTOSS, TAVARWEE, PLINKO
+    COINTOSS, YAVARWEE, PLINKO
 }
