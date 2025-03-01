@@ -17,6 +17,6 @@ class Plinko(
     val ticketPrice: Int,
 
     @Column(name = "ticket_qauntity")
-    val ticketQauntity: Int
+    var ticketQauntity: Int
 ) {
 }
