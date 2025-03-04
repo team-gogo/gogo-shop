@@ -3,16 +3,14 @@ package gogo.gogoshop.global.saga
 import gogo.gogoshop.domain.cointoss.persistence.CoinTossRepository
 import gogo.gogoshop.domain.plinko.persistence.PlinkoRepository
 import gogo.gogoshop.domain.shop.receipt.persistence.TicketType
-import gogo.gogoshop.domain.shop.root.persistence.ShopRepository
 import gogo.gogoshop.domain.yavarwee.persistence.YavarweeRepository
 import gogo.gogoshop.global.error.ShopException
-import org.springframework.data.repository.findByIdOrNull
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
 @Component
-class ShopTicketBuyFailedSaga(
+class TicketShopBuyFailedSaga(
     private val plinkoRepository: PlinkoRepository,
     private val yavarweeRepository: YavarweeRepository,
     private val coinTossRepository: CoinTossRepository

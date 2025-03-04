@@ -2,7 +2,7 @@ package gogo.gogoshop.domain.shop.root.event
 
 import gogo.gogoshop.domain.shop.receipt.persistence.TicketType
 
-data class ShopTicketBuyEvent(
+data class TicketShopBuyEvent(
     val id: String,
     val studentId: Long,
     val shopId: Long,

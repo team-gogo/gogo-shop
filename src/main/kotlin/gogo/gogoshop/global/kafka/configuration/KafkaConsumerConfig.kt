@@ -1,6 +1,6 @@
 package gogo.gogoshop.global.kafka.configuration
 
-import gogo.gogoshop.global.kafka.consumer.ShopTicketBuyFailedConsumer
+import gogo.gogoshop.global.kafka.consumer.TicketShopBuyFailedConsumer
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -17,7 +17,7 @@ class KafkaConsumerConfig(
 ) {
 
     @Bean
-    fun shopTicketBuyFailedEventListenerContainerFactory(listener: ShopTicketBuyFailedConsumer): ConcurrentKafkaListenerContainerFactory<String, String> =
+    fun ticketShopBuyFailedEventListenerContainerFactory(listener: TicketShopBuyFailedConsumer): ConcurrentKafkaListenerContainerFactory<String, String> =
         makeFactory(listener)
 
     private fun makeFactory(listener: AcknowledgingMessageListener<String, String>): ConcurrentKafkaListenerContainerFactory<String, String> {

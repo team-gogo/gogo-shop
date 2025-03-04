@@ -1,6 +1,6 @@
 package gogo.gogoshop.global.kafka.properties
 
 object KafkaTopics {
-    const val SHOP_TICKET_BUY = "shop_ticket_betting"
-    const val SHOP_TICKET_BUY_FAILED = "shop_ticket_buy_failed"
+    const val TICKET_SHOP_BUY = "ticket_shop_buy"
+    const val TICKET_SHOP_BUY_FAILED = "ticket_shop_buy_failed"
 }

@@ -4,7 +4,7 @@ import gogo.gogoshop.domain.cointoss.application.CoinTossReader
 import gogo.gogoshop.domain.plinko.application.PlinkoReader
 import gogo.gogoshop.domain.shop.root.application.dto.BuyMiniGameTicketReqDto
 import gogo.gogoshop.domain.shop.root.application.dto.ShopTicketStatusResDto
-import gogo.gogoshop.domain.shop.root.event.ShopTicketBuyEvent
+import gogo.gogoshop.domain.shop.root.event.TicketShopBuyEvent
 import gogo.gogoshop.domain.yavarwee.application.YavarweeReader
 import gogo.gogoshop.global.internal.point.api.PointApi
 import gogo.gogoshop.global.util.UserContextUtil
@@ -50,7 +50,7 @@ class ShopServiceImpl(
         shopValidator.valid(pointDto.point, ticketPrice, buyMiniGameTicketReqDto.purchaseQuantity, nowTicketQauntity)
         shopProcessor.minusShopTicketQauntity(shop, buyMiniGameTicketReqDto.ticketType, buyMiniGameTicketReqDto.purchaseQuantity)
         applicationEventPublisher.publishEvent(
-            ShopTicketBuyEvent(
+            TicketShopBuyEvent(
                 id = UUID.randomUUID().toString(),
                 studentId = student.studentId,
                 shopId = shopId,

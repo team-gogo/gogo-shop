@@ -1,7 +1,7 @@
 package gogo.gogoshop.global.kafka.publisher
 
-import gogo.gogoshop.domain.shop.root.event.ShopTicketBuyEvent
-import gogo.gogoshop.global.kafka.properties.KafkaTopics.SHOP_TICKET_BUY
+import gogo.gogoshop.domain.shop.root.event.TicketShopBuyEvent
+import gogo.gogoshop.global.kafka.properties.KafkaTopics.TICKET_SHOP_BUY
 import gogo.gogoshop.global.publusher.TransactionEventPublisher
 import org.springframework.stereotype.Component
 import java.util.UUID
@@ -12,11 +12,11 @@ class ShopPublisher(
 ) {
 
     fun publishShopTicketBuyEvent(
-        event: ShopTicketBuyEvent
+        event: TicketShopBuyEvent
     ) {
         val key = UUID.randomUUID().toString()
         transactionEventPublisher.publishEvent(
-            topic = SHOP_TICKET_BUY,
+            topic = TICKET_SHOP_BUY,
             key = key,
             event = event
         )
