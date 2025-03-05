@@ -49,6 +49,7 @@ class ShopServiceImpl(
         val nowTicketQauntity = shopReader.readTicketQauntity(shopId, buyMiniGameTicketReqDto.ticketType)
         shopValidator.valid(pointDto.point, ticketPrice, buyMiniGameTicketReqDto.purchaseQuantity, nowTicketQauntity)
         shopProcessor.minusShopTicketQauntity(shop, buyMiniGameTicketReqDto.ticketType, buyMiniGameTicketReqDto.purchaseQuantity)
+        val receipt = shopProcessor.saveBuyTicketReceipt(shopId, student.studentId, buyMiniGameTicketReqDto.ticketType, buyMiniGameTicketReqDto.purchaseQuantity, ticketPrice)
         applicationEventPublisher.publishEvent(
             TicketShopBuyEvent(
                 id = UUID.randomUUID().toString(),
@@ -57,6 +58,7 @@ class ShopServiceImpl(
                 miniGameId = miniGameId,
                 ticketType = buyMiniGameTicketReqDto.ticketType,
                 purchaseQuantity = buyMiniGameTicketReqDto.purchaseQuantity,
+                shopReceiptId = receipt.shopReceiptId
             )
         )
     }
