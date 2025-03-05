@@ -1,6 +1,8 @@
 package gogo.gogoshop.global.kafka.configuration
 
+import gogo.gogoshop.global.kafka.consumer.TicketPointMinusFailedConsumer
 import gogo.gogoshop.global.kafka.consumer.TicketShopBuyFailedConsumer
+import gogo.gogoshop.global.kafka.consumer.UserTicketQuantityAddFailedConsumer
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
