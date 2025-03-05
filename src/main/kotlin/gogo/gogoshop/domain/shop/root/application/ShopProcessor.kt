@@ -4,11 +4,14 @@ import gogo.gogoshop.domain.cointoss.application.CoinTossReader
 import gogo.gogoshop.domain.cointoss.persistence.CoinTossRepository
 import gogo.gogoshop.domain.plinko.application.PlinkoReader
 import gogo.gogoshop.domain.plinko.persistence.PlinkoRepository
+import gogo.gogoshop.domain.shop.receipt.persistence.ShopReceipt
+import gogo.gogoshop.domain.shop.receipt.persistence.ShopReceiptRepository
 import gogo.gogoshop.domain.shop.receipt.persistence.TicketType
 import gogo.gogoshop.domain.shop.root.persistence.Shop
 import gogo.gogoshop.domain.yavarwee.application.YavarweeReader
 import gogo.gogoshop.domain.yavarwee.persistence.YavarweeRepository
 import org.springframework.stereotype.Component
+import java.time.LocalDateTime
 
 @Component
 class ShopProcessor(
@@ -17,7 +20,8 @@ class ShopProcessor(
     private val coinTossReader: CoinTossReader,
     private val yavarweeRepository: YavarweeRepository,
     private val plinkoRepository: PlinkoRepository,
-    private val coinTossRepository: CoinTossRepository
+    private val coinTossRepository: CoinTossRepository,
+    private val shopReceiptRepository: ShopReceiptRepository,
 ) {
 
     fun minusShopTicketQauntity(shop: Shop, ticketType: TicketType, minusQuantity: Int) {
@@ -36,5 +40,22 @@ class ShopProcessor(
         }
     }
 
+    fun saveBuyTicketReceipt(
+        shopId: Long,
+        studentId: Long,
+        ticketType: TicketType,
+        purchaseQuantity: Int,
+        ticketPrice: Int
+    ): ShopReceipt {
+        val receipt = ShopReceipt(
+            shopId = shopId,
+            studentId = studentId,
+            ticketQauntity = purchaseQuantity,
+            ticketPrice = ticketPrice,
+            ticketType = ticketType,
+            purchaseDate = LocalDateTime.now(),
+        )
 
+        return shopReceiptRepository.save(receipt)
+    }
 }
