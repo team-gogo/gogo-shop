@@ -9,5 +9,6 @@ data class TicketShopBuyEvent(
     val miniGameId: Long,
     val ticketType: TicketType,
     val shopReceiptId: Long,
+    val ticketPrice: Int,
     val purchaseQuantity: Int,
 )

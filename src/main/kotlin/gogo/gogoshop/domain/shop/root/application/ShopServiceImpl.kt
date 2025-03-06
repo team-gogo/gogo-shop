@@ -58,6 +58,7 @@ class ShopServiceImpl(
                 miniGameId = miniGameId,
                 ticketType = buyMiniGameTicketReqDto.ticketType,
                 purchaseQuantity = buyMiniGameTicketReqDto.purchaseQuantity,
+                ticketPrice = ticketPrice,
                 shopReceiptId = receipt.shopReceiptId
             )
         )
