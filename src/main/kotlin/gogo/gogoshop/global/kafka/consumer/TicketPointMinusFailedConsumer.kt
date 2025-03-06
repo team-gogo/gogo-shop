@@ -28,7 +28,7 @@ class TicketPointMinusFailedConsumer(
         val (key, event) = data.key() to objectMapper.readValue(data.value(), TicketPointMinusFailedEvent::class.java)
         log.info("${TICKET_POINT_MINUS_FAILED}_topic, key: $key, event: $event")
 
-        ticketPointMinusFailedSaga.rollbackBoughtTicket(event.miniGameId, event.ticketType, event.shopReceiptId)
+        ticketPointMinusFailedSaga.rollbackBoughtTicket(event.shopMiniGameId, event.ticketType, event.shopReceiptId)
 
         acknowledgment!!.acknowledge()
     }

@@ -20,16 +20,16 @@ class TicketAdditionFailedSaga(
 ) {
 
     @Transactional
-    fun rollbackBoughtShopTicket(miniGameId: Long, ticketType: TicketType, shopReceiptId: Long) {
+    fun rollbackBoughtShopTicket(shopMiniGameId: Long, ticketType: TicketType, shopReceiptId: Long) {
         if (ticketType == TicketType.PLINKO) {
 
-            val plinko = plinkoRepository.findByIdOrNull(miniGameId)
-                ?: throw ShopException("Plinko Not Found -- SAGA.rollbackBoughtShopTicket(miniGameId=$miniGameId, ticketType=$ticketType, shopReceiptId=$shopReceiptId)",
+            val plinko = plinkoRepository.findByIdOrNull(shopMiniGameId)
+                ?: throw ShopException("Plinko Not Found -- SAGA.rollbackBoughtShopTicket(miniGameId=$shopMiniGameId, ticketType=$ticketType, shopReceiptId=$shopReceiptId)",
                     HttpStatus.NOT_FOUND.value()
                 )
 
             val shopReceipt = shopReceiptRepository.findByIdOrNull(shopReceiptId)
-                ?: throw ShopException("ShopReceipt Not Found -- SAGA.rollbackBoughtShopTicket(miniGameId=$miniGameId, ticketType=$ticketType, shopReceiptId=$shopReceiptId)",
+                ?: throw ShopException("ShopReceipt Not Found -- SAGA.rollbackBoughtShopTicket(miniGameId=$shopMiniGameId, ticketType=$ticketType, shopReceiptId=$shopReceiptId)",
                     HttpStatus.NOT_FOUND.value()
                 )
 
@@ -39,13 +39,13 @@ class TicketAdditionFailedSaga(
             shopReceipt.cancelPurchaseStatus()
         } else if (ticketType == TicketType.YAVARWEE) {
 
-            val yavarwee = yavarweeRepository.findByIdOrNull(miniGameId)
-                ?: throw ShopException("Yavarwee Not Found -- SAGA.rollbackBoughtShopTicket(miniGameId=$miniGameId, ticketType=$ticketType, shopReceiptId=$shopReceiptId)",
+            val yavarwee = yavarweeRepository.findByIdOrNull(shopMiniGameId)
+                ?: throw ShopException("Yavarwee Not Found -- SAGA.rollbackBoughtShopTicket(miniGameId=$shopMiniGameId, ticketType=$ticketType, shopReceiptId=$shopReceiptId)",
                     HttpStatus.NOT_FOUND.value()
                 )
 
             val shopReceipt = shopReceiptRepository.findByIdOrNull(shopReceiptId)
-                ?: throw ShopException("ShopReceipt Not Found -- SAGA.rollbackBoughtShopTicket(miniGameId=$miniGameId, ticketType=$ticketType, shopReceiptId=$shopReceiptId)",
+                ?: throw ShopException("ShopReceipt Not Found -- SAGA.rollbackBoughtShopTicket(miniGameId=$shopMiniGameId, ticketType=$ticketType, shopReceiptId=$shopReceiptId)",
                     HttpStatus.NOT_FOUND.value()
                 )
 
@@ -54,13 +54,13 @@ class TicketAdditionFailedSaga(
             shopReceipt.cancelPurchaseStatus()
         } else {
 
-            val coinToss = coinTossRepository.findByIdOrNull(miniGameId)
-                ?: throw ShopException("CoinToss Not Found -- SAGA.rollbackBoughtShopTicket(miniGameId=$miniGameId, ticketType=$ticketType, shopReceiptId=$shopReceiptId)",
+            val coinToss = coinTossRepository.findByIdOrNull(shopMiniGameId)
+                ?: throw ShopException("CoinToss Not Found -- SAGA.rollbackBoughtShopTicket(miniGameId=$shopMiniGameId, ticketType=$ticketType, shopReceiptId=$shopReceiptId)",
                     HttpStatus.NOT_FOUND.value()
                 )
 
             val shopReceipt = shopReceiptRepository.findByIdOrNull(shopReceiptId)
-                ?: throw ShopException("ShopReceipt Not Found -- SAGA.rollbackBoughtShopTicket(miniGameId=$miniGameId, ticketType=$ticketType, shopReceiptId=$shopReceiptId)",
+                ?: throw ShopException("ShopReceipt Not Found -- SAGA.rollbackBoughtShopTicket(miniGameId=$shopMiniGameId, ticketType=$ticketType, shopReceiptId=$shopReceiptId)",
                     HttpStatus.NOT_FOUND.value()
                 )
 

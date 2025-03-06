@@ -4,7 +4,7 @@ import gogo.gogoshop.domain.shop.receipt.persistence.TicketType
 
 data class TicketAdditionFailedEvent(
     val id: String,
-    val miniGameId: Long,
+    val shopMiniGameId: Long,
     val ticketType: TicketType,
     val shopReceiptId: Long,
 )
