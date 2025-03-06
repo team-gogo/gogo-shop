@@ -24,6 +24,6 @@ class PlinkoReader(
 
     fun readPlinkoTicketQauntity(shopId: Long): Int {
         val plinko = read(shopId)
-        return plinko!!.ticketQauntity
+        return plinko!!.ticketQuantity
     }
 }

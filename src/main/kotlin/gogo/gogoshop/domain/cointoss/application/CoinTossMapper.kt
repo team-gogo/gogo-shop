@@ -12,7 +12,7 @@ class CoinTossMapper {
             CoinTossResDto(
                 coinTossId = it.coinTossId,
                 ticketPrice = it.ticketPrice,
-                ticketQuantity = it.ticketQauntity
+                ticketQuantity = it.ticketQuantity
             )
         }
 }

@@ -24,7 +24,7 @@ class CoinTossReader(
 
     fun readCoinTossTicketQauntity(shopId: Long): Int {
         val coinToss = read(shopId)
-        return coinToss!!.ticketQauntity
+        return coinToss!!.ticketQuantity
     }
 
 }
