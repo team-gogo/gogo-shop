@@ -36,7 +36,7 @@ class TicketAdditionFailedSaga(
 
             plinko.plusQuantity(shopReceipt.ticketQauntity)
             plinkoRepository.save(plinko)
-            shopReceiptRepository.deleteById(miniGameId)
+            shopReceipt.cancelPurchaseStatus()
         } else if (ticketType == TicketType.YAVARWEE) {
 
             val yavarwee = yavarweeRepository.findByIdOrNull(miniGameId)
@@ -51,7 +51,7 @@ class TicketAdditionFailedSaga(
 
             yavarwee.plusQuantity(shopReceipt.ticketQauntity)
             yavarweeRepository.save(yavarwee)
-            shopReceiptRepository.deleteById(miniGameId)
+            shopReceipt.cancelPurchaseStatus()
         } else {
 
             val coinToss = coinTossRepository.findByIdOrNull(miniGameId)
@@ -66,7 +66,7 @@ class TicketAdditionFailedSaga(
 
             coinToss.plusQuantity(shopReceipt.ticketQauntity)
             coinTossRepository.save(coinToss)
-            shopReceiptRepository.deleteById(miniGameId)
+            shopReceipt.cancelPurchaseStatus()
         }
     }
 }

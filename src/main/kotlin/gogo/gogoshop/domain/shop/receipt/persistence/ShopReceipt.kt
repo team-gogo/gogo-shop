@@ -28,10 +28,23 @@ class ShopReceipt(
     val ticketType: TicketType,
 
     @Column(name = "purchase_date", nullable = false)
-    val purchaseDate: LocalDateTime
+    val purchaseDate: LocalDateTime,
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "purchase_status", nullable = false)
+    var purchaseStatus: PurchaseStatus,
 ) {
+
+    fun cancelPurchaseStatus() {
+        purchaseStatus = PurchaseStatus.CANCELED
+    }
+
 }
 
 enum class TicketType {
     COINTOSS, YAVARWEE, PLINKO
+}
+
+enum class PurchaseStatus {
+    CONFORMED, CANCELED
 }
