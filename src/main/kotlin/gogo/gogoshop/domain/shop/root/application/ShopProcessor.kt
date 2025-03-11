@@ -4,6 +4,7 @@ import gogo.gogoshop.domain.cointoss.application.CoinTossReader
 import gogo.gogoshop.domain.cointoss.persistence.CoinTossRepository
 import gogo.gogoshop.domain.plinko.application.PlinkoReader
 import gogo.gogoshop.domain.plinko.persistence.PlinkoRepository
+import gogo.gogoshop.domain.shop.receipt.persistence.PurchaseStatus
 import gogo.gogoshop.domain.shop.receipt.persistence.ShopReceipt
 import gogo.gogoshop.domain.shop.receipt.persistence.ShopReceiptRepository
 import gogo.gogoshop.domain.shop.receipt.persistence.TicketType
@@ -54,6 +55,7 @@ class ShopProcessor(
             ticketPrice = ticketPrice,
             ticketType = ticketType,
             purchaseDate = LocalDateTime.now(),
+            purchaseStatus = PurchaseStatus.CONFORMED
         )
 
         return shopReceiptRepository.save(receipt)
