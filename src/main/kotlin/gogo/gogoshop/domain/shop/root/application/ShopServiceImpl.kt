@@ -55,11 +55,12 @@ class ShopServiceImpl(
                 id = UUID.randomUUID().toString(),
                 studentId = student.studentId,
                 shopId = shopId,
-                miniGameId = miniGameId,
+                stageId = shop.stageId,
+                shopMiniGameId = miniGameId,
                 ticketType = buyMiniGameTicketReqDto.ticketType,
                 purchaseQuantity = buyMiniGameTicketReqDto.purchaseQuantity,
                 ticketPrice = ticketPrice,
-                shopReceiptId = receipt.shopReceiptId
+                shopReceiptId = receipt.shopReceiptId,
             )
         )
     }

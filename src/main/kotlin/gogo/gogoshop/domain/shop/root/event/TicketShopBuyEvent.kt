@@ -6,6 +6,7 @@ data class TicketShopBuyEvent(
     val id: String,
     val studentId: Long,
     val shopId: Long,
+    val stageId: Long,
     val shopMiniGameId: Long,
     val ticketType: TicketType,
     val shopReceiptId: Long,
