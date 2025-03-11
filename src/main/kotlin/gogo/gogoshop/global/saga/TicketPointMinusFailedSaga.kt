@@ -12,7 +12,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
 
 @Component
-class TicketPointMinusFailedSaga(
+class ㅇTicketPointMinusFailedSaga(
     private val plinkoRepository: PlinkoRepository,
     private val yavarweeRepository: YavarweeRepository,
     private val coinTossRepository: CoinTossRepository,
