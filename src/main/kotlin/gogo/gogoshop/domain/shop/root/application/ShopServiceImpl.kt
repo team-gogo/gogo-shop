@@ -30,6 +30,7 @@ class ShopServiceImpl(
     @Transactional(readOnly = true)
     override fun getShopTicketStatus(stageId: Long): ShopTicketStatusResDto {
         val shop = shopReader.readByStageId(stageId)
+        shopValidator.validShopStatus(shop)
         val coinToss = coinTossReader.read(shop.shopId)
         val plinko = plinkoReader.read(shop.shopId)
         val yavarwee = yavarweeReader.read(shop.shopId)
@@ -42,6 +43,7 @@ class ShopServiceImpl(
     @Transactional
     override fun buyMiniGameTicket(shopId: Long, buyMiniGameTicketReqDto: BuyMiniGameTicketReqDto) {
         val shop = shopReader.readByShopId(shopId)
+        shopValidator.validShopStatus(shop)
         val student = userUtil.getCurrentStudent()
         val pointDto = pointApi.queryPointByStageIdAndStudentId(shop.stageId, student.studentId)
         val miniGameId = shopReader.readShopTicketId(shopId, buyMiniGameTicketReqDto.ticketType)

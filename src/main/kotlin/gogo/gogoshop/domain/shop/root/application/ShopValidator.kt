@@ -1,5 +1,7 @@
 package gogo.gogoshop.domain.shop.root.application
 
+import gogo.gogoshop.domain.shop.root.persistence.ActiveShopStatus
+import gogo.gogoshop.domain.shop.root.persistence.Shop
 import gogo.gogoshop.global.error.ShopException
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
@@ -19,5 +21,9 @@ class ShopValidator {
         }
     }
 
-
+    fun validShopStatus(shop: Shop) {
+        if (shop.isActiveShop == ActiveShopStatus.PENDING) {
+            throw ShopException("Shop Is Not Active Now Status Pending, shopId=${shop.shopId}", HttpStatus.BAD_REQUEST.value())
+        }
+    }
 }
