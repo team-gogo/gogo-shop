@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam
 
 @FeignClient(name = "gogo-stage")
 interface PointClient {
-    @GetMapping("/api/point/{stage_id}")
+    @GetMapping("/stage/api/point/{stage_id}")
     fun queryPointByStageIdAndStudentId(
         @PathVariable("stage_id") stageId: Long,
         @RequestParam("studentId") studentId: Long
