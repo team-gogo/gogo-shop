@@ -60,4 +60,14 @@ class ShopProcessor(
 
         return shopReceiptRepository.save(receipt)
     }
+
+    @Transactional
+    fun shopActiveToAble(stageId: Long) {
+        val shop = shopReader.readByStageId(stageId)
+
+        shop.changeActiveShopStatus()
+
+        shopRepository.save(shop)
+    }
+
 }

@@ -25,6 +25,11 @@ class KafkaConsumerConfig(
     fun ticketAdditionFailedEventListenerContainerFactory(listener: TicketAdditionFailedConsumer): ConcurrentKafkaListenerContainerFactory<String, String> =
         makeFactory(listener)
 
+    @Bean
+    fun stageConfirmEventListenerContainerFactory(listener: StageConfirmConsumer): ConcurrentKafkaListenerContainerFactory<String, String> =
+        makeFactory(listener)
+
+
     private fun makeFactory(listener: AcknowledgingMessageListener<String, String>): ConcurrentKafkaListenerContainerFactory<String, String> {
         return ConcurrentKafkaListenerContainerFactory<String, String>().apply {
             consumerFactory = consumerFactory()
