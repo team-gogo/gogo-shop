@@ -11,6 +11,13 @@ class Shop(
     val shopId: Long = 0,
 
     @Column(name = "stage_id", nullable = false, unique = true)
-    val stageId: Long
-) {
+    val stageId: Long,
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "is_active_game", nullable = false)
+    var isActiveShop: ActiveShopStatus,
+)
+
+enum class ActiveShopStatus {
+    PENDING, ABLE
 }
