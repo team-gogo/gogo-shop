@@ -57,7 +57,7 @@ class ShopProcessor(
         studentId: Long,
         ticketType: TicketType,
         purchaseQuantity: Int,
-        ticketPrice: Int
+        ticketPrice: Long
     ): ShopReceipt {
         val receipt = ShopReceipt(
             shopId = shopId,

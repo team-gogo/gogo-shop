@@ -21,7 +21,7 @@ class ShopReceipt(
     val ticketQauntity: Int,
 
     @Column(name = "ticket_price", nullable = false)
-    val ticketPrice: Int,
+    val ticketPrice: Long,
 
     @Enumerated(EnumType.STRING)
     @Column(name = "ticket_type", nullable = false)

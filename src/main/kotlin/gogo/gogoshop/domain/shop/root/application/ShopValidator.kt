@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 @Component
 class ShopValidator {
 
-    fun valid(point: Long, ticketPrice: Int, purchaseQauntity: Int, nowTicketQauntity: Int) {
+    fun valid(point: Long, ticketPrice: Long, purchaseQauntity: Int, nowTicketQauntity: Int) {
         if (purchaseQauntity > nowTicketQauntity) {
             throw ShopException("Purchase Ticket Qauntity Is Larger Than Shop ticket Qauntity", HttpStatus.BAD_REQUEST.value())
         }

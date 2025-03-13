@@ -17,7 +17,7 @@ class CoinTossReader(
         return coinToss!!.coinTossId
     }
 
-    fun readCoinTossTicketPrice(shopId: Long): Int {
+    fun readCoinTossTicketPrice(shopId: Long): Long {
         val coinToss = read(shopId)
         return coinToss!!.ticketPrice
     }
