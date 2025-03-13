@@ -15,7 +15,7 @@ class Yavarwee(
     val shopId: Long,
 
     @Column(name = "ticket_price")
-    val ticketPrice: Int,
+    val ticketPrice: Long,
 
     @Column(name = "ticket_qauntity")
     var ticketQuantity: Int
