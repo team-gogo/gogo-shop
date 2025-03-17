@@ -12,7 +12,7 @@ class YavarweeMapper {
             YavarweeResDto(
                 yavarweeId = it.yavarweeId,
                 ticketPrice = it.ticketPrice,
-                ticketQuantity = it.ticketQauntity
+                ticketQuantity = it.ticketQuantity
             )
         }
 

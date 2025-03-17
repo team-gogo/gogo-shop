@@ -12,7 +12,7 @@ class PlinkoMapper {
             PlinkoResDto(
                 plinkoId = it.plinkoId,
                 ticketPrice = it.ticketPrice,
-                ticketQuantity = it.ticketQauntity
+                ticketQuantity = it.ticketQuantity
             )
         }
 

@@ -18,6 +18,15 @@ class Yavarwee(
     val ticketPrice: Int,
 
     @Column(name = "ticket_qauntity")
-    val ticketQauntity: Int
+    var ticketQuantity: Int
 ) {
+
+    fun minusQuantity(minusTicketQuantity: Int) {
+        ticketQuantity -= minusTicketQuantity
+    }
+
+    fun plusQuantity(plusQuantity: Int) {
+        ticketQuantity += plusQuantity
+    }
+
 }
