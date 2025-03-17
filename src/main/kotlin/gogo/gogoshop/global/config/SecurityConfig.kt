@@ -47,8 +47,9 @@ class SecurityConfig(
             httpRequests.requestMatchers(HttpMethod.GET, "/shop/health").permitAll()
 
             // shop
-            httpRequests.requestMatchers(HttpMethod.GET, "/shop/{stage_id}").hasAnyRole(Authority.USER.name)
-            httpRequests.requestMatchers(HttpMethod.GET, "/shop/receipt/{shop_id}").hasAnyRole(Authority.USER.name)
+            httpRequests.requestMatchers(HttpMethod.GET, "/shop/{stage_id}").hasAnyRole(Authority.USER.name, Authority.STAFF.name)
+            httpRequests.requestMatchers(HttpMethod.POST, "/shop/{shop_id}").hasAnyRole(Authority.USER.name, Authority.STAFF.name)
+            httpRequests.requestMatchers(HttpMethod.GET, "/shop/receipt/{shop_id}").hasAnyRole(Authority.USER.name, Authority.STAFF.name)
 
             httpRequests.anyRequest().denyAll()
         }
