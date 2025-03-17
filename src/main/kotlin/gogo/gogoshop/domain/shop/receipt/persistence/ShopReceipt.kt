@@ -28,6 +28,7 @@ class ShopReceipt(
     val ticketType: TicketType,
 
     @Column(name = "purchase_date", nullable = false)
+
     val purchaseDate: LocalDateTime,
 
     @Enumerated(EnumType.STRING)
