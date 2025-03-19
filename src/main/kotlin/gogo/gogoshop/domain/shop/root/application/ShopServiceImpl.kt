@@ -6,6 +6,7 @@ import gogo.gogoshop.domain.shop.root.application.dto.BuyMiniGameTicketReqDto
 import gogo.gogoshop.domain.shop.root.application.dto.ShopTicketStatusResDto
 import gogo.gogoshop.domain.shop.root.event.TicketShopBuyEvent
 import gogo.gogoshop.domain.yavarwee.application.YavarweeReader
+import gogo.gogoshop.global.internal.participant.api.ParticipantApi
 import gogo.gogoshop.global.internal.point.api.PointApi
 import gogo.gogoshop.global.util.UserContextUtil
 import org.springframework.context.ApplicationEventPublisher
@@ -29,7 +30,9 @@ class ShopServiceImpl(
 
     @Transactional(readOnly = true)
     override fun getShopTicketStatus(stageId: Long): ShopTicketStatusResDto {
+        val student = userUtil.getCurrentStudent()
         val shop = shopReader.readByStageId(stageId)
+        shopValidator.validStage(shop.stageId, student.studentId)
         shopValidator.validShopStatus(shop)
         val coinToss = coinTossReader.read(shop.shopId)
         val plinko = plinkoReader.read(shop.shopId)
@@ -42,9 +45,10 @@ class ShopServiceImpl(
 
     @Transactional
     override fun buyMiniGameTicket(shopId: Long, buyMiniGameTicketReqDto: BuyMiniGameTicketReqDto) {
-        val shop = shopReader.readByShopId(shopId)
-        shopValidator.validShopStatus(shop)
         val student = userUtil.getCurrentStudent()
+        val shop = shopReader.readByShopId(shopId)
+        shopValidator.validStage(shop.stageId, student.studentId)
+        shopValidator.validShopStatus(shop)
         val pointDto = pointApi.queryPointByStageIdAndStudentId(shop.stageId, student.studentId)
         val miniGameId = shopReader.readShopTicketId(shopId, buyMiniGameTicketReqDto.ticketType)
         val ticketPrice = shopReader.readTicketPrice(shopId, buyMiniGameTicketReqDto.ticketType)

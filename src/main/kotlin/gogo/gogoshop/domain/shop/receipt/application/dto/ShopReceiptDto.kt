@@ -9,7 +9,7 @@ data class ReceiptResDto(
 )
 
 data class ShopTicketReceiptDto(
-    val ticketPrice: Int,
+    val ticketPrice: Long,
     val ticketQuantity: Int,
     val ticketType: TicketType,
     val purchaseDate: LocalDateTime
