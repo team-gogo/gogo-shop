@@ -3,6 +3,7 @@ package gogo.gogoshop.global.config
 
 import gogo.gogoshop.domain.shop.root.application.ShopMapper
 import gogo.gogoshop.global.filter.AuthenticationFilter
+import gogo.gogoshop.global.filter.LoggingFilter
 import gogo.gogoshop.global.handler.CustomAccessDeniedHandler
 import gogo.gogoshop.global.handler.CustomAuthenticationEntryPointHandler
 import gogo.gogoshop.global.internal.user.stub.Authority
@@ -21,7 +22,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 class SecurityConfig(
     private val customAccessDeniedHandler: CustomAccessDeniedHandler,
     private val customAuthenticationEntryPointHandler: CustomAuthenticationEntryPointHandler,
-    private val authenticationFilter: AuthenticationFilter
+    private val authenticationFilter: AuthenticationFilter,
+    private val loggingFilter: LoggingFilter
 ) {
 
     @Bean
@@ -41,10 +43,12 @@ class SecurityConfig(
             sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         }
 
-        http.addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
+        http.addFilterBefore(loggingFilter, UsernamePasswordAuthenticationFilter::class.java)
+            .addFilterBefore(authenticationFilter, LoggingFilter::class.java)
 
         http.authorizeHttpRequests { httpRequests ->
             httpRequests.requestMatchers(HttpMethod.GET, "/shop/health").permitAll()
+            httpRequests.requestMatchers(HttpMethod.GET, "/actuator/**").permitAll()
 
             // shop
             httpRequests.requestMatchers(HttpMethod.GET, "/shop/{stage_id}").hasAnyRole(Authority.USER.name, Authority.STAFF.name)

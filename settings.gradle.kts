@@ -1,1 +1,1 @@
-rootProject.name = "gogoshop"
+rootProject.name = "gogo-shop"

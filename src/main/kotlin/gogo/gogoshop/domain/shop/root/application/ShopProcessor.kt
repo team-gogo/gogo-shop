@@ -66,7 +66,7 @@ class ShopProcessor(
             ticketPrice = ticketPrice,
             ticketType = ticketType,
             purchaseDate = LocalDateTime.now(),
-            purchaseStatus = PurchaseStatus.CONFORMED
+            purchaseStatus = PurchaseStatus.CONFORMED,
         )
 
         return shopReceiptRepository.save(receipt)
