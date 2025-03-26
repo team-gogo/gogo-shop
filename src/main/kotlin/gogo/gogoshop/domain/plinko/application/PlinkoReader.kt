@@ -17,7 +17,7 @@ class PlinkoReader(
         return plinko!!.plinkoId
     }
 
-    fun readPlinkoTicketPrice(shopId: Long): Int {
+    fun readPlinkoTicketPrice(shopId: Long): Long {
         val plinko = read(shopId)
         return plinko!!.ticketPrice
     }

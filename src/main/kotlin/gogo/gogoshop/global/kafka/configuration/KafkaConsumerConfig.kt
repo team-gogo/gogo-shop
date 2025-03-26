@@ -1,7 +1,6 @@
 package gogo.gogoshop.global.kafka.configuration
 
-import gogo.gogoshop.global.kafka.consumer.TicketPointMinusFailedConsumer
-import gogo.gogoshop.global.kafka.consumer.TicketAdditionFailedConsumer
+import gogo.gogoshop.global.kafka.consumer.*
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -23,6 +22,14 @@ class KafkaConsumerConfig(
 
     @Bean
     fun ticketAdditionFailedEventListenerContainerFactory(listener: TicketAdditionFailedConsumer): ConcurrentKafkaListenerContainerFactory<String, String> =
+        makeFactory(listener)
+
+    @Bean
+    fun stageConfirmEventListenerContainerFactory(listener: StageConfirmConsumer): ConcurrentKafkaListenerContainerFactory<String, String> =
+        makeFactory(listener)
+
+    @Bean
+    fun stageCreateOfficialEventListenerContainerFactory(listener: StageCreateOfficialConsumer): ConcurrentKafkaListenerContainerFactory<String, String> =
         makeFactory(listener)
 
     private fun makeFactory(listener: AcknowledgingMessageListener<String, String>): ConcurrentKafkaListenerContainerFactory<String, String> {

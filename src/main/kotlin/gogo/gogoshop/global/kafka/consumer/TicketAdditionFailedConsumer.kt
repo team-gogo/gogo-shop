@@ -21,7 +21,7 @@ class TicketAdditionFailedConsumer(
 
     @KafkaListener(
         topics = [TICKET_ADDITION_FAILED],
-        groupId = "gogo",
+        groupId = "gogo-shop",
         containerFactory = "ticketAdditionFailedEventListenerContainerFactory"
     )
     override fun onMessage(data: ConsumerRecord<String, String>, acknowledgment: Acknowledgment?) {

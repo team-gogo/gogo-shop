@@ -34,7 +34,7 @@ class ShopReader(
         }
     }
 
-    fun readTicketPrice(shopId: Long, ticketType: TicketType): Int {
+    fun readTicketPrice(shopId: Long, ticketType: TicketType): Long {
         return when(ticketType) {
             TicketType.PLINKO -> plinkoReader.readPlinkoTicketPrice(shopId)
             TicketType.COINTOSS -> coinTossReader.readCoinTossTicketPrice(shopId)
