@@ -46,7 +46,7 @@ class ShopReader(
         return when(ticketType) {
             TicketType.PLINKO -> plinkoReader.readPlinkoTicketQauntity(shopId)
             TicketType.COINTOSS -> coinTossReader.readCoinTossTicketQauntity(shopId)
-            TicketType.YAVARWEE -> coinTossReader.readCoinTossTicketQauntity(shopId)
+            TicketType.YAVARWEE -> yavarweeReader.readYavarweeTicketQuantity(shopId)
         }
     }
 }
