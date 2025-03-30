@@ -38,7 +38,7 @@ class ShopProcessor(
 
     fun minusShopTicketQauntity(shop: Shop, ticketType: TicketType, minusQuantity: Int) {
         if (ticketType == TicketType.PLINKO) {
-            val plinko = plinkoReader.read(shop.shopId)
+            val plinko = plinkoReader.readForWrite(shop.shopId)
             plinko!!.minusQuantity(minusQuantity)
             plinkoRepository.save(plinko)
         } else if (ticketType == TicketType.COINTOSS) {
