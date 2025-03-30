@@ -42,7 +42,7 @@ class ShopProcessor(
             plinko!!.minusQuantity(minusQuantity)
             plinkoRepository.save(plinko)
         } else if (ticketType == TicketType.COINTOSS) {
-            val coinToss = coinTossReader.read(shop.shopId)
+            val coinToss = coinTossReader.readForWrite(shop.shopId)
             coinToss!!.minusQuantity(minusQuantity)
             coinTossRepository.save(coinToss)
         } else if (ticketType == TicketType.YAVARWEE) {

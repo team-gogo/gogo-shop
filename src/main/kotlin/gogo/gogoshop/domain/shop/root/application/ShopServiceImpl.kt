@@ -36,6 +36,7 @@ class ShopServiceImpl(
         val coinToss = coinTossReader.read(shop.shopId)
         val plinko = plinkoReader.read(shop.shopId)
         val yavarwee = yavarweeReader.read(shop.shopId)
+        val coinToss = coinTossReader.readForWrite(shop.shopId)
         val coinTossResDto = shopMapper.mapCoinToss(coinToss)
         val plinkoResDto = shopMapper.mapPlinko(plinko)
         val yavarweeResDto = shopMapper.mapYavarwee(yavarwee)

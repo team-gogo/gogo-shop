@@ -9,21 +9,21 @@ class CoinTossReader(
     private val coinTossRepository: CoinTossRepository
 ) {
 
-    fun read(shopId: Long): CoinToss? =
-        coinTossRepository.findByShopId(shopId)
+    fun readForWrite(shopId: Long): CoinToss? =
+        coinTossRepository.findByShopIdForWrite(shopId)
 
     fun readCoinTossTicketId(shopId: Long): Long {
-        val coinToss = coinTossRepository.findByShopId(shopId)
+        val coinToss = coinTossRepository.findByShopIdForWrite(shopId)
         return coinToss!!.coinTossId
     }
 
     fun readCoinTossTicketPrice(shopId: Long): Long {
-        val coinToss = read(shopId)
+        val coinToss = readForWrite(shopId)
         return coinToss!!.ticketPrice
     }
 
     fun readCoinTossTicketQauntity(shopId: Long): Int {
-        val coinToss = read(shopId)
+        val coinToss = readForWrite(shopId)
         return coinToss!!.ticketQuantity
     }
 
