@@ -46,7 +46,7 @@ class ShopProcessor(
             coinToss!!.minusQuantity(minusQuantity)
             coinTossRepository.save(coinToss)
         } else if (ticketType == TicketType.YAVARWEE) {
-            val yavarwee = yavarweeReader.read(shop.shopId)
+            val yavarwee = yavarweeReader.readForWrite(shop.shopId)
             yavarwee!!.minusQuantity(minusQuantity)
             yavarweeRepository.save(yavarwee)
         }

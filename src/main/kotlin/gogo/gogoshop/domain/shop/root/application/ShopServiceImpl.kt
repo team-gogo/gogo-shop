@@ -35,6 +35,7 @@ class ShopServiceImpl(
         shopValidator.validShopStatus(shop)
         val coinToss = coinTossReader.readForWrite(shop.shopId)
         val plinko = plinkoReader.readForWrite(shop.shopId)
+        val yavarwee = yavarweeReader.readForWrite(shop.shopId)
         val coinTossResDto = shopMapper.mapCoinToss(coinToss)
         val plinkoResDto = shopMapper.mapPlinko(plinko)
         val yavarweeResDto = shopMapper.mapYavarwee(yavarwee)
