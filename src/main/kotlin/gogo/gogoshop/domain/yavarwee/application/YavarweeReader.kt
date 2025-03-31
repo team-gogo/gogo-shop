@@ -9,6 +9,9 @@ class YavarweeReader(
     private val yavarweeRepository: YavarweeRepository
 ) {
 
+    fun readForWrite(shopId: Long): Yavarwee? =
+        yavarweeRepository.findByShopIdForWrite(shopId)
+
     fun read(shopId: Long): Yavarwee? =
         yavarweeRepository.findByShopId(shopId)
 

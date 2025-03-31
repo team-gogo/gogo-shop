@@ -38,15 +38,15 @@ class ShopProcessor(
 
     fun minusShopTicketQauntity(shop: Shop, ticketType: TicketType, minusQuantity: Int) {
         if (ticketType == TicketType.PLINKO) {
-            val plinko = plinkoReader.read(shop.shopId)
+            val plinko = plinkoReader.readForWrite(shop.shopId)
             plinko!!.minusQuantity(minusQuantity)
             plinkoRepository.save(plinko)
         } else if (ticketType == TicketType.COINTOSS) {
-            val coinToss = coinTossReader.read(shop.shopId)
+            val coinToss = coinTossReader.readForWrite(shop.shopId)
             coinToss!!.minusQuantity(minusQuantity)
             coinTossRepository.save(coinToss)
         } else if (ticketType == TicketType.YAVARWEE) {
-            val yavarwee = yavarweeReader.read(shop.shopId)
+            val yavarwee = yavarweeReader.readForWrite(shop.shopId)
             yavarwee!!.minusQuantity(minusQuantity)
             yavarweeRepository.save(yavarwee)
         }
