@@ -12,8 +12,11 @@ class PlinkoReader(
     fun readForWrite(shopId: Long): Plinko? =
         plinkoRepository.findByShopIdForWrite(shopId)
 
+    fun read(shopId: Long): Plinko? =
+        plinkoRepository.findByShopId(shopId)
+
     fun readPlinkoTicketId(shopId: Long): Long {
-        val plinko = plinkoRepository.findByShopIdForWrite(shopId)
+        val plinko = plinkoRepository.findByShopId(shopId)
         return plinko!!.plinkoId
     }
 
@@ -23,7 +26,7 @@ class PlinkoReader(
     }
 
     fun readPlinkoTicketQauntity(shopId: Long): Int {
-        val plinko = readForWrite(shopId)
+        val plinko = read(shopId)
         return plinko!!.ticketQuantity
     }
 }

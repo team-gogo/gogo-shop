@@ -10,4 +10,7 @@ interface PlinkoRepository: JpaRepository<Plinko, Long> {
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("SELECT p FROM Plinko p WHERE p.shopId = :shopId")
     fun findByShopIdForWrite(shopId: Long): Plinko?
+
+    fun findByShopId(shopId: Long): Plinko?
+
 }

@@ -9,5 +9,7 @@ interface YavarweeRepository: JpaRepository<Yavarwee, Long> {
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("SELECT y FROM Yavarwee y WHERE y.shopId = :shopId")
+    fun findByShopIdForWrite(shopId: Long): Yavarwee?
+
     fun findByShopId(shopId: Long): Yavarwee?
 }

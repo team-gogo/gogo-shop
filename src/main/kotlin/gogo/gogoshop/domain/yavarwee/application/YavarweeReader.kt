@@ -10,20 +10,23 @@ class YavarweeReader(
 ) {
 
     fun readForWrite(shopId: Long): Yavarwee? =
+        yavarweeRepository.findByShopIdForWrite(shopId)
+
+    fun read(shopId: Long): Yavarwee? =
         yavarweeRepository.findByShopId(shopId)
 
     fun readYavarweeTicketId(shopId: Long): Long {
-        val yavarwee = readForWrite(shopId)
+        val yavarwee = read(shopId)
         return yavarwee!!.yavarweeId
     }
 
     fun readYavarweeTicketPrice(shopId: Long): Long {
-        val yavarwee = readForWrite(shopId)
+        val yavarwee = read(shopId)
         return yavarwee!!.ticketPrice
     }
 
     fun readYavarweeTicketQuantity(shopId: Long): Int {
-        val yavarwee = readForWrite(shopId)
+        val yavarwee = read(shopId)
         return yavarwee!!.ticketQuantity
     }
 }

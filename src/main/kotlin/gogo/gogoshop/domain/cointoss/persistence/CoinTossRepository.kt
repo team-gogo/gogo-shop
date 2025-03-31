@@ -10,4 +10,6 @@ interface CoinTossRepository: JpaRepository<CoinToss, Long> {
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("SELECT c FROM CoinToss c WHERE c.shopId = :shopId")
     fun findByShopIdForWrite(shopId: Long): CoinToss?
+
+    fun findByShopId(shopId: Long): CoinToss?
 }
