@@ -16,7 +16,13 @@ class Shop(
     @Enumerated(EnumType.STRING)
     @Column(name = "is_active_game", nullable = false)
     var isActiveShop: ActiveShopStatus,
-)
+) {
+
+    fun changeActiveShopStatus() {
+        isActiveShop = ActiveShopStatus.ABLE
+    }
+
+}
 
 enum class ActiveShopStatus {
     PENDING, ABLE

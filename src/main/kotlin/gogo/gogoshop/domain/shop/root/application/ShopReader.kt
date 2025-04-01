@@ -34,7 +34,7 @@ class ShopReader(
         }
     }
 
-    fun readTicketPrice(shopId: Long, ticketType: TicketType): Int {
+    fun readTicketPrice(shopId: Long, ticketType: TicketType): Long {
         return when(ticketType) {
             TicketType.PLINKO -> plinkoReader.readPlinkoTicketPrice(shopId)
             TicketType.COINTOSS -> coinTossReader.readCoinTossTicketPrice(shopId)
@@ -46,7 +46,7 @@ class ShopReader(
         return when(ticketType) {
             TicketType.PLINKO -> plinkoReader.readPlinkoTicketQauntity(shopId)
             TicketType.COINTOSS -> coinTossReader.readCoinTossTicketQauntity(shopId)
-            TicketType.YAVARWEE -> coinTossReader.readCoinTossTicketQauntity(shopId)
+            TicketType.YAVARWEE -> yavarweeReader.readYavarweeTicketQuantity(shopId)
         }
     }
 }

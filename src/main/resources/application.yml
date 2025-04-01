@@ -1,5 +1,30 @@
+---
+
+spring:
+  application:
+
+    name: shop-service
+  config:
+    activate:
+      on-profile: local
+    import: "optional:configserver:http://localhost:8888/"
+
+---
+
 spring:
   application:
     name: shop-service
   config:
-    import: "optional:configserver:http://localhost:8888/"
+    activate:
+      on-profile: stage
+    import: "optional:configserver:http://host.docker.internal:8888/"
+
+---
+
+spring:
+  application:
+    name: shop-service
+  config:
+    activate:
+      on-profile: prod
+    import: "optional:configserver:http://10.0.143.204:8888/"

@@ -11,17 +11,17 @@ class ShopReceipt(
     @Column(name = "shop_receipt_id")
     val shopReceiptId: Long = 0,
 
-    @Column(name = "shop_id", nullable = false, unique = true)
+    @Column(name = "shop_id", nullable = false)
     val shopId: Long,
 
-    @Column(name = "student_id", nullable = false, unique = true)
+    @Column(name = "student_id", nullable = false)
     val studentId: Long,
 
     @Column(name = "ticket_qauntity", nullable = false)
     val ticketQauntity: Int,
 
     @Column(name = "ticket_price", nullable = false)
-    val ticketPrice: Int,
+    val ticketPrice: Long,
 
     @Enumerated(EnumType.STRING)
     @Column(name = "ticket_type", nullable = false)
