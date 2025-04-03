@@ -55,12 +55,12 @@ jobs:
 
               ./gradlew clean build
 
-              docker build -f DockerFileProd -t gogo-shop-prod .
+              docker build -f DockerFileStage -t gogo-shop-stage .
 
-              docker stop gogo-shop-prod || true
-              docker rm gogo-shop-prod || true
+              docker stop gogo-shop-stage || true
+              docker rm gogo-shop-stage || true
 
-              docker run -d -p 8084:8084 --add-host host.docker.internal:host-gateway --name gogo-shop-prod gogo-shop-prod
+              docker run -d -p 8084:8084 --add-host host.docker.internal:host-gateway --name gogo-shop-stage gogo-shop-stage
 
       - name: SSH Success Notification
         if: success()
