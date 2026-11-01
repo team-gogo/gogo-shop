@@ -1,30 +1,68 @@
----
+server:
+  port: 8084
+  shutdown: graceful
 
 spring:
   application:
+    name: gogo-shop
+  main:
+    allow-circular-references: true
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://postgres.infra.svc.cluster.local:5432/gogo_shop}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        default_batch_fetch_size: 1000
+  data:
+    redis:
+      host: ${REDIS_HOST:redis.infra.svc.cluster.local}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka.infra.svc.cluster.local:9092}
+    consumer:
+      group-id: gogo
+      auto-offset-reset: earliest
+      properties:
+        spring:
+          json:
+            use:
+              type:
+                headers: "false"
+            trusted:
+              packages: "*"
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      retries: 1
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    listener:
+      ack-mode: manual
+      poll-timeout: 5000
 
-    name: shop-service
-  config:
-    activate:
-      on-profile: local
-    import: "optional:configserver:http://localhost:8888/"
+clients:
+  stage:
+    url: ${STAGE_URL:http://gogo-stage.gogo.svc.cluster.local}
+  user:
+    url: ${USER_URL:http://gogo-user.gogo.svc.cluster.local}
 
----
-
-spring:
-  application:
-    name: shop-service
-  config:
-    activate:
-      on-profile: stage
-    import: "optional:configserver:http://host.docker.internal:8888/"
-
----
-
-spring:
-  application:
-    name: shop-service
-  config:
-    activate:
-      on-profile: prod
-    import: "optional:configserver:http://10.0.143.204:8888/"
+management:
+  server:
+    port: 9090
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      probes:
+        enabled: true

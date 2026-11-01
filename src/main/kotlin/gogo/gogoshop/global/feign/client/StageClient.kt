@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestParam
 
-@FeignClient(name = "gogo-stage")
+@FeignClient(name = "gogo-stage", url = "\${clients.stage.url}")
 interface StageClient {
     @GetMapping("/stage/api/point/{stage_id}")
     fun queryPointByStageIdAndStudentId(
